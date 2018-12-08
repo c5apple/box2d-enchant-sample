@@ -6,6 +6,17 @@
 
     var game = new Core(320, 320);
 
+    // 四角形のクラス
+    var Box = Class.create(PhyBoxSprite, {
+      initialize: function (x, y) {
+        PhyBoxSprite.call(this, 16, 16, enchant.box2d.DYNAMIC_SPRITE, 1.5, 1.0, 0.3, true);
+        this.backgroundColor = "red";
+        this.x = x;
+        this.y = y;
+        game.rootScene.addChild(this);
+      }
+    });
+
     // メインループ
     game.onload = function () {
 
@@ -25,17 +36,10 @@
       }
       game.rootScene.addChild(floor);
 
-      // 四角形の作成
-      var addBox = function () {
-        var box = new PhyBoxSprite(32, 32, enchant.box2d.DYNAMIC_SPRITE, 1.0, 0.5, 0.3, true);
-        box.backgroundColor = "red";
-        box.position = {
-          x: 100,
-          y: 50
-        }
-        game.rootScene.addChild(box);
+      // 四角形の表示
+      for (var i = 0; i < 320; i += 32) {
+        var box = new Box(i, i);
       }
-      addBox();
 
       // 物理エンジン処理
       game.rootScene.onenterframe = function () {
