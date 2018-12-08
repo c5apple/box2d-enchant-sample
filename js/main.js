@@ -58,7 +58,7 @@
         this.y = y;
         game.rootScene.addChild(this);
       },
-      ontouchstart: function () {
+      ontouchend: function () {
 
         /*
          * applyImpulse(new b2Vec2(横方向の力, 縦方向の力))
@@ -76,7 +76,7 @@
         this.y = y;
         game.rootScene.addChild(this);
       },
-      ontouchstart: function () {
+      ontouchend: function () {
         /*
          * applyImpulse(new b2Vec2(横方向の力, 縦方向の力))
          */
@@ -93,7 +93,7 @@
         this.y = y;
         game.rootScene.addChild(this);
       },
-      ontouchstart: function () {
+      ontouchend: function () {
 
         /*
          * applyImpulse(new b2Vec2(横方向の力, 縦方向の力))
@@ -124,6 +124,13 @@
       for (var i = 280 - (16 * 2); i > 180 - (16 * 2); i -= 20) {
         var wall = new Wall(250, i);
       }
+
+      // game.rootScene.on(Event.TOUCH_START, function (e) {
+      //   pig.x = e.x;
+      // });
+      // game.rootScene.on(Event.TOUCH_MOVE, function (e) {
+      //   pig.x = e.x;
+      // });
 
       game.rootScene.onenterframe = function () {
         // 物理エンジン処理
