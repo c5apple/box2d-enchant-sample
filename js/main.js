@@ -44,7 +44,7 @@
     // 豚キャラの生成クラス
     var Pig = Class.create(PhyCircleSprite, {
       initialize: function (x, y) {
-        PhyCircleSprite.call(this, 8, enchant.box2d.DYNAMIC_SPRITE, 1.5, 1.0, 0.3, true);
+        PhyCircleSprite.call(this, 8, enchant.box2d.DYNAMIC_SPRITE, 1.5, 10.0, 0.3, true);
         this.image = game.assets.icon0;
         this.frame = 22;
         this.x = x;
@@ -56,7 +56,43 @@
            * applyImpulse(new b2Vec2(横方向の力, 縦方向の力))
            */
 
-          this.applyImpulse(new b2Vec2(4, -1.5));
+          this.applyImpulse(new b2Vec2(2.5, -1.0));
+        }
+      }
+    });
+    var Panda = Class.create(PhyCircleSprite, {
+      initialize: function (x, y) {
+        PhyCircleSprite.call(this, 8, enchant.box2d.DYNAMIC_SPRITE, 1.5, 1.0, 0.3, true);
+        this.image = game.assets.icon0;
+        this.frame = 21;
+        this.x = x;
+        this.y = y;
+        game.rootScene.addChild(this);
+        this.ontouchstart = function () {
+
+          /*
+           * applyImpulse(new b2Vec2(横方向の力, 縦方向の力))
+           */
+
+          this.applyImpulse(new b2Vec2(2.5, -1.5));
+        }
+      }
+    });
+    var KuroPig = Class.create(PhyCircleSprite, {
+      initialize: function (x, y) {
+        PhyCircleSprite.call(this, 8, enchant.box2d.DYNAMIC_SPRITE, 1.5, 1.0, 0.3, true);
+        this.image = game.assets.icon0;
+        this.frame = 23;
+        this.x = x;
+        this.y = y;
+        game.rootScene.addChild(this);
+        this.ontouchstart = function () {
+
+          /*
+           * applyImpulse(new b2Vec2(横方向の力, 縦方向の力))
+           */
+
+          this.applyImpulse(new b2Vec2(2.5, -1.0));
         }
       }
     });
@@ -71,7 +107,9 @@
       }
 
       // 豚キャラの処理
-      var pig = new Pig(50, 200);
+      var pig = new Pig(70, 200);
+      var panda = new Panda(40, 200);
+      var kuroPig = new KuroPig(5, 200);
 
       // 壁の作成
       for (var i = 280; i > 220; i -= 20) {
