@@ -9,11 +9,22 @@
     // 四角形のクラス
     var Box = Class.create(PhyBoxSprite, {
       initialize: function (x, y) {
-        PhyBoxSprite.call(this, 16, 16, enchant.box2d.DYNAMIC_SPRITE, 1.5, 1.0, 0.3, true);
+        PhyBoxSprite.call(this, 32, 32, enchant.box2d.DYNAMIC_SPRITE, 1.0, 1.0, 0.4, true);
         this.backgroundColor = "red";
         this.x = x;
         this.y = y;
         game.rootScene.addChild(this);
+        /**
+         * クリックイベント
+         */
+        this.ontouchstart = function () {
+
+          /*
+           * applyImpulse(new b2Vec2(横方向の力, 縦方向の力))
+           */
+
+           this.applyImpulse(new b2Vec2(15, -10));
+        }
       }
     });
 
@@ -36,10 +47,17 @@
       }
       game.rootScene.addChild(floor);
 
-      // 四角形の表示
-      for (var i = 0; i < 320; i += 32) {
-        var box = new Box(i, i);
+      // 壁の作成
+      var floor = new PhyBoxSprite(16, 320, enchant.box2d.STATIC_SPRITE, 0, 0.2, 0.5, false);
+      floor.backgroundColor = "#aaa";
+      floor.position = {
+        x: 312,
+        y: 160
       }
+      game.rootScene.addChild(floor);
+
+      // 四角形の表示
+      var box = new Box(50, 100);
 
       // 物理エンジン処理
       game.rootScene.onenterframe = function () {
